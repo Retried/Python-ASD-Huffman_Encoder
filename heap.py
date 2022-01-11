@@ -19,15 +19,6 @@ def heapify(array, i):
         heapify(array, smallest)
 
 
-def build_min_heap(array):
-    global heap_size
-
-    heap_size = len(array) - 1
-
-    for i in range(heap_size // 2, 0, -1):
-        heapify(array, i)
-
-
 def heap_dequeue(array):
     global heap_size
 
@@ -43,5 +34,10 @@ def heap_dequeue(array):
 
 
 def heap_enqueue(array, key):
+    global heap_size
+
     array.append(key)
-    build_min_heap(array)
+    heap_size = len(array) - 1
+
+    for i in range(heap_size // 2, 0, -1):
+        heapify(array, i)

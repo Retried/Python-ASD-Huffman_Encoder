@@ -18,16 +18,12 @@ def character_count(file):
     return chars_dict
 
 
-def priority_queue(chars):
-    queue = []
+def tree(chars):
+    data = []
 
     for char in chars:
-        heap_enqueue(queue, (chars.get(char), char))
+        heap_enqueue(data, (chars.get(char), char))
 
-    return queue
-
-
-def tree(data):
     while len(data) >= 2:
         a = heap_dequeue(data)
         b = heap_dequeue(data)
@@ -59,8 +55,7 @@ if __name__ == '__main__':
     char_count = character_count(input_file)
     symbols = char_count.keys()
     probabilities = char_count.values()
-    enqueued_char_count = priority_queue(char_count)
-    tree = tree(enqueued_char_count)
+    tree = tree(char_count)
     dictionary = []
 
     save_file("output.bin", encode(tree, "", input_file, dictionary))
